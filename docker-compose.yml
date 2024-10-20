@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./src/Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+
+  api-gateway:
+    build:
+      context: ./src/Backend/APIGateway
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - user-service
+      - document-service
+      - editor-service
+      - history-service
+      - export-service
+
+  user-service:
+    build:
+      context: ./src/Backend/Services/UserService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+
+  document-service:
+    build:
+      context: ./src/Backend/Services/DocumentService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80"
+
+  editor-service:
+    build:
+      context: ./src/Backend/Services/EditorService
+      dockerfile: Dockerfile
+    ports:
+      - "5003:80"
+
+  history-service:
+    build:
+      context: ./src/Backend/Services/HistoryService
+      dockerfile: Dockerfile
+    ports:
+      - "5004:80"
+
+  export-service:
+    build:
+      context: ./src/Backend/Services/ExportService
+      dockerfile: Dockerfile
+    ports:
+      - "5005:80"
