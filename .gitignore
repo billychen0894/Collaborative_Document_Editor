@@ -43,3 +43,7 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+launchSettings.json
+appsettings.Development.json
+appsettings.Staging.json
+appsettings.Production.json
